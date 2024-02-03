@@ -1,17 +1,19 @@
 package org.example;
 
-import java.io.File;
-
 public class Main {
     public static void main(String[] args) {
-        Jackson jackson = new Jackson();
-        File file = new File("bookings.xml");
+        BookingDAO bookingDAO = new BookingDAO();
 
-        String json = jackson.convertXMLtoJSON(file);
+        bookingDAO.mostrarReservas();
 
+        Booking booking = new Booking("pruebaCliente", "agency", "room", "10,23", "hotel", "10/10/2000", 1);
+        bookingDAO.insertReservas(booking);
 
-        //Add the json to de mongodb database
-        MongoDBConnector mongoDBConnector = new MongoDBConnector();
-        mongoDBConnector.getDatabase().getCollection("bookings").insertMany(json);
+        bookingDAO.borrarReserva(1);
+        bookingDAO.borrarReserva(1);
+
+        bookingDAO.actualizarPrecioReserva(1, "0,0");
+        bookingDAO.actualizarPrecioReserva(2, "10,10");
+
     }
 }

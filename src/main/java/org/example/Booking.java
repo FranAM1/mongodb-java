@@ -1,29 +1,56 @@
 package org.example;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.bson.Document;
+
 public class Booking {
-    private int location_number;
+    @JsonProperty("location_number")
+    private int locationNumber;
     private String client;
     private String agency;
     private String room;
+    private String price;
     private String hotel;
-    private String check_in;
-    private int room_nights;
 
-    public Booking(String client, String agency, String room, String hotel, String check_in, int room_nights) {
-        this.client = client;
-        this.agency = agency;
-        this.room = room;
-        this.hotel = hotel;
-        this.check_in = check_in;
-        this.room_nights = room_nights;
+    @JsonProperty("check_in")
+    private String checkIn;
+
+    @JsonProperty("room_nights")
+    private int roomNights;
+
+    public Booking() {
     }
 
-    public int getLocation_number() {
-        return location_number;
+    public Booking(String client, String agency, String room, String price, String hotel, String checkIn, int roomNights) {
+        this.setClient(client);
+        this.setAgency(agency);
+        this.setRoom(room);
+        this.setPrice(price);
+        this.setHotel(hotel);
+        this.setCheckIn(checkIn);
+        this.setRoomNights(roomNights);
     }
 
-    public void setLocation_number(int location_number) {
-        this.location_number = location_number;
+    @Override
+    public String toString() {
+        return "Booking{" + '\n' +
+                "locationNumber=" + locationNumber + '\n' +
+                ", client='" + client + '\n' +
+                ", agency='" + agency + '\n' +
+                ", room='" + room + '\n' +
+                ", price='" + price + '\n' +
+                ", hotel='" + hotel + '\n' +
+                ", checkIn='" + checkIn + '\n' +
+                ", roomNights=" + roomNights + '\n' +
+                '}';
+    }
+
+    public int getLocationNumber() {
+        return locationNumber;
+    }
+
+    public void setLocationNumber(int locationNumber) {
+        this.locationNumber = locationNumber;
     }
 
     public String getClient() {
@@ -58,19 +85,27 @@ public class Booking {
         this.hotel = hotel;
     }
 
-    public String getCheck_in() {
-        return check_in;
+    public String getCheckIn() {
+        return checkIn;
     }
 
-    public void setCheck_in(String check_in) {
-        this.check_in = check_in;
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn;
     }
 
-    public int getRoom_nights() {
-        return room_nights;
+    public int getRoomNights() {
+        return roomNights;
     }
 
-    public void setRoom_nights(int room_nights) {
-        this.room_nights = room_nights;
+    public void setRoomNights(int roomNights) {
+        this.roomNights = roomNights;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }
